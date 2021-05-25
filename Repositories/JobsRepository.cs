@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using contractor.Models;
+using Dapper;
 
 namespace contractor.Repositories
 {
@@ -11,13 +16,17 @@ namespace contractor.Repositories
       _db = db;
     }
     // TODO GetAll
-
+    internal List<Job> GetAll()
+    {
+      string sql = "SELECT * FROM jobs";
+      return _db.Query<Job>(sql).ToList();
+    }
     // TODO GetById
 
     // TODO Create
 
     // TODO Put
 
-    // TODO Delete5
+    // TODO Delete
   }
 }

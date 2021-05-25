@@ -5,7 +5,7 @@ namespace contractor.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  public class ContractorsController
+  public class ContractorsController : ControllerBase
   {
     public readonly ContractorsService _cService;
     public readonly ContractorsJobsService _cjService;
