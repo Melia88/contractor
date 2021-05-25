@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace contractor.Controllers
 {
+  [ApiController]
+  [Route("api/[controller]")]
   public class JobsController
   {
     private readonly JobsService _jService;
@@ -21,7 +23,8 @@ namespace contractor.Controllers
     {
       try
       {
-
+        List<Job> jobs = _jService.GetAll();
+        return Ok(jobs);
       }
       catch (System.Exception e)
       {

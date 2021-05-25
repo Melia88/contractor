@@ -1,7 +1,10 @@
 using contractor.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace contractor.Controllers
 {
+  [ApiController]
+  [Route("api/[controller]")]
   public class ContractorsController
   {
     public readonly ContractorsService _cService;
