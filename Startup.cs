@@ -39,10 +39,12 @@ namespace contractor
       services.AddTransient<ContractorsJobsService>();
 
       // REPOS
-      // services.AddScoped<JobsRepository>();
+
       services.AddTransient<JobsRepository>();
       services.AddTransient<ContractorsRepository>();
       services.AddTransient<ContractorsJobsRepository>();
+      // IBD CONNECTION
+      services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
 
 

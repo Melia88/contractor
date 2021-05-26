@@ -14,34 +14,54 @@ namespace contractor.Services
       _repo = repo;
     }
 
-    // TODO GetAll
-    internal List<Job> GetAll()
+    // GetAll
+
+    public List<Job> GetAll()
     {
       return _repo.GetAll();
     }
 
-    // TODO GetById
-    internal Job GetById(int id)
+    // GetById
+    public Job GetById(int id)
     {
-      throw new NotImplementedException();
+      Job job = _repo.GetById(id);
+      if (job == null)
+      {
+        throw new Exception("Invalid Job Id");
+      }
+      return job;
     }
 
-    // TODO Create
-    internal Job CreateJob(Job newJob)
+    // Create
+    public Job CreateJob(Job newJob)
     {
-      throw new NotImplementedException();
+      return _repo.Create(newJob);
     }
 
     // TODO Put
-    internal Job UpdateJob(Job update)
+    public Job UpdateJob(Job update)
     {
-      throw new NotImplementedException();
+      Job original = GetById(update.Id);
+      original.Name = update.Name.Length > 0 ? update.Name : original.Name;
+      original.Description = update.Description.Length > 0 ? update.Description : original.Description;
+      original.Location = update.Location.Length > 0 ? update.Location : original.Location;
+      original.Salary = update.Salary > 0 ? update.Salary : original.Salary;
+
+      if (_repo.UpdateJob(original))
+      {
+        return original;
+      }
+      throw new Exception("Something went wrong??");
     }
 
-    // TODO Delete
-    internal void Delete(int id)
+    // Delete
+    public void Delete(int id)
     {
-      throw new NotImplementedException();
+      Job job = GetById(id);
+      if (!_repo.Delete(id))
+      {
+        throw new Exception("Something has gove VERY wrong!");
+      }
     }
 
 

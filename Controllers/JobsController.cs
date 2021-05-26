@@ -17,7 +17,7 @@ namespace contractor.Controllers
       _jService = jService;
     }
 
-    // TODO GetAll
+    // GetAll
     [HttpGet]
     public ActionResult<List<Job>> GetAll()
     {
@@ -33,7 +33,7 @@ namespace contractor.Controllers
     }
 
 
-    // TODO GetById
+    // GetById
     [HttpGet("{id}")]
     public ActionResult<Job> GetById(int id)
     {
@@ -47,7 +47,7 @@ namespace contractor.Controllers
         return BadRequest(e.Message);
       }
     }
-    // TODO Create
+    // Create
     [HttpPost]
     public ActionResult<Job> CreateJob([FromBody] Job newJob)
     {
@@ -63,10 +63,11 @@ namespace contractor.Controllers
     }
     // TODO Put
     [HttpPut("{id}")]
-    public ActionResult<Job> Update([FromBody] Job update)
+    public ActionResult<Job> Update(int id, [FromBody] Job update)
     {
       try
       {
+        update.Id = id;
         Job job = _jService.UpdateJob(update);
         return Ok(job);
       }
@@ -76,7 +77,7 @@ namespace contractor.Controllers
       }
     }
 
-    // TODO Delete
+    // Delete
     [HttpDelete("{id}")]
     public ActionResult<Job> Delete(int id)
     {
