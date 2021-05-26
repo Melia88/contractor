@@ -49,6 +49,7 @@ namespace contractor.Repositories
     internal bool UpdateJob(Job original)
     {
       string sql = @"
+      UPDATE jobs
       SET 
         name = @Name,
         description = @Description,
